@@ -1,0 +1,22 @@
+[
+  {
+    "id": 1,
+    "nombre": "FC Barcelona",
+    "liga": "LaLiga",
+    "goles": 85,
+    "jugadores": [
+      {"id": 1, "nombre": "Robert Lewandowski", "goles": 30, "posicion": "Delantero"},
+      {"id": 2, "nombre": "Pedri", "goles": 5, "posicion": "Mediocampista"}
+    ]
+  },
+  {
+    "id": 2,
+    "nombre": "Manchester City",
+    "liga": "Premier League",
+    "goles": 90,
+    "jugadores": [
+      {"id": 3, "nombre": "Erling Haaland", "goles": 36, "posicion": "Delantero"},
+      {"id": 4, "nombre": "Kevin De Bruyne", "goles": 12, "posicion": "Mediocampista"}
+    ]
+  }
+]
