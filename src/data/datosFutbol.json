@@ -23,7 +23,7 @@
     "id": 3,
     "nombre": "Bayer Munich",
     "liga": "Bundesliga",
-    "goles": 90,
+    "goles": 96,
     "jugadores": [
       {"id": 5, "nombre": "Harry Kane", "goles": 40, "posicion": "Delantero"},
       {"id": 6, "nombre": "Jamal Musiala", "goles": 17, "posicion": "Mediocampista"}
@@ -33,7 +33,7 @@
     "id": 4,
     "nombre": "River Plate",
     "liga": "Liga Profesional AFA",
-    "goles": 90,
+    "goles": 58,
     "jugadores": [
       {"id": 3, "nombre": "Facundo Colidio", "goles": 14, "posicion": "Delantero"},
       {"id": 4, "nombre": "Franco Mastantuono", "goles": 7, "posicion": "Mediocampista"}
