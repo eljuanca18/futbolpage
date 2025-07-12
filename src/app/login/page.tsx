@@ -3,29 +3,44 @@
 import { useState } from 'react';
 import { supabase } from '@/lib/supabaseClient';
 import Link from 'next/link';
-import '@/styles/auth.css';
 
 export default function RegistroPage() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [confirm, setConfirm] = useState('');
-  const [msg, setMsg] = useState('');
+  const [message, setMessage] = useState('');
+  const [loading, setLoading] = useState(false);
 
   const handleRegister = async (e: React.FormEvent) => {
     e.preventDefault();
+
     if (password !== confirm) {
-      setMsg('Las contraseñas no coinciden');
+      setMessage('❌ Las contraseñas no coinciden');
       return;
     }
-    const { error } = await supabase.auth.signUp({ email, password });
-    setMsg(error ? error.message : 'Revisa tu correo para confirmar tu cuenta');
+
+    setLoading(true);
+    setMessage('');
+
+    const { data, error } = await supabase.auth.signUp({
+      email,
+      password
+    });
+
+    if (error) {
+      setMessage(`❌ ${error.message}`);
+    } else {
+      setMessage('✅ Cuenta creada. Revisa tu correo para confirmar el registro.');
+    }
+
+    setLoading(false);
   };
 
   return (
     <div className="auth-wrapper">
       <div className="auth-card">
-        <div className="text-center">
-          <div style={{ fontSize: '2.5rem' }} className="text-center mb-2">⚽</div>
+        <div className="text-center mb-3">
+          <div style={{ fontSize: '2.5rem' }}>⚽</div>
           <h2 className="auth-title">FutbolPage</h2>
           <p className="auth-subtitle">Crea tu cuenta para comenzar</p>
         </div>
@@ -56,16 +71,16 @@ export default function RegistroPage() {
             required
           />
 
-          <button type="submit" className="btn auth-btn w-100 mb-2">
-            Registrarse
+          <button type="submit" className="btn auth-btn w-100" disabled={loading}>
+            {loading ? 'Registrando...' : 'Registrarse'}
           </button>
         </form>
 
-        {msg && <p className="text-center text-danger">{msg}</p>}
+        {message && <p className="text-center mt-3">{message}</p>}
 
         <p className="text-center mt-3">
-          ¿Ya creaste una cuenta?{' '}
-          <Link href="/login" className="text-warning fw-bold">
+          ¿Ya tienes cuenta?{' '}
+          <Link href="/login" className="auth-link">
             Iniciar sesión
           </Link>
         </p>
