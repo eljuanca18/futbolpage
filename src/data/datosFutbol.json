@@ -35,8 +35,8 @@
     "liga": "Liga Profesional AFA",
     "goles": 58,
     "jugadores": [
-      {"id": 3, "nombre": "Facundo Colidio", "goles": 14, "posicion": "Delantero"},
-      {"id": 4, "nombre": "Franco Mastantuono", "goles": 7, "posicion": "Mediocampista"}
+      {"id": 7, "nombre": "Facundo Colidio", "goles": 14, "posicion": "Delantero"},
+      {"id": 8, "nombre": "Franco Mastantuono", "goles": 7, "posicion": "Mediocampista"}
     ]
   }
 ]
