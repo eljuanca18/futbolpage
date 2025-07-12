@@ -41,7 +41,6 @@ a {
   }
 }
 
-/* Estilos generales */
 body {
   margin: 0;
   padding: 0;
@@ -50,17 +49,15 @@ body {
   color: #333;
 }
 
-/* Fondo degradado y centrado para auth */
 .auth-wrapper {
   min-height: 100vh;
-  background: linear-gradient(135deg, #d63a3a, #b73cd8);
+  background: linear-gradient(135deg, #2e8b57, #1e5f3f); /* verde césped */
   display: flex;
   align-items: center;
   justify-content: center;
   padding: 1rem;
 }
 
-/* Tarjeta blanca centrada */
 .auth-card {
   background: #fff;
   padding: 2rem;
@@ -70,34 +67,30 @@ body {
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
 }
 
-/* Título principal */
 .auth-title {
   font-size: 1.8rem;
-  color: #e33d26;
+  color: #2e7d32;
   font-weight: 700;
   margin-bottom: 0.5rem;
 }
 
-/* Subtítulo descriptivo */
 .auth-subtitle {
   color: #666;
   font-size: 0.95rem;
   margin-bottom: 1.5rem;
 }
 
-/* Botón con gradiente naranja */
 .auth-btn {
-  background: linear-gradient(to right, #ff5e57, #e33d26);
+  background: linear-gradient(to right, #4caf50, #2e7d32); /* verde fuerte */
   border: none;
   color: white;
   font-weight: 600;
 }
 
 .auth-btn:hover {
-  background: linear-gradient(to right, #e33d26, #ff5e57);
+  background: linear-gradient(to right, #2e7d32, #4caf50);
 }
 
-/* Ajustes a los inputs */
 input.form-control {
   border-radius: 8px;
   padding: 0.6rem 0.8rem;

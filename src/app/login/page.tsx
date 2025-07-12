@@ -25,8 +25,8 @@ export default function RegistroPage() {
     <div className="auth-wrapper">
       <div className="auth-card">
         <div className="text-center">
-          <img src="/icon-basket.svg" width={40} />
-          <h2 className="auth-title">BasketPro</h2>
+          <div style={{ fontSize: '2.5rem' }} className="text-center mb-2">⚽</div>
+          <h2 className="auth-title">FutbolPage</h2>
           <p className="auth-subtitle">Crea tu cuenta para comenzar</p>
         </div>
 
@@ -64,7 +64,7 @@ export default function RegistroPage() {
         {msg && <p className="text-center text-danger">{msg}</p>}
 
         <p className="text-center mt-3">
-          ¿Ya tienes cuenta?{' '}
+          ¿Ya creaste una cuenta?{' '}
           <Link href="/login" className="text-warning fw-bold">
             Iniciar sesión
           </Link>
