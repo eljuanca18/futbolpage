@@ -2,35 +2,50 @@
 
 import { useState } from 'react';
 import { supabase } from '@/lib/supabaseClient';
-import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 
-export default function RegistroPage() {
+export default function AuthPage() {
+  const [isLogin, setIsLogin] = useState(true); // true = login, false = registro
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [confirm, setConfirm] = useState('');
   const [message, setMessage] = useState('');
   const [loading, setLoading] = useState(false);
 
-  const handleRegister = async (e: React.FormEvent) => {
+  const router = useRouter();
+
+  const toggleMode = () => {
+    setIsLogin(!isLogin);
+    setMessage('');
+    setPassword('');
+    setConfirm('');
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-
-    if (password !== confirm) {
-      setMessage('❌ Las contraseñas no coinciden');
-      return;
-    }
-
     setLoading(true);
     setMessage('');
 
-    const { data, error } = await supabase.auth.signUp({
-      email,
-      password
-    });
+    if (!isLogin && password !== confirm) {
+      setMessage('❌ Las contraseñas no coinciden');
+      setLoading(false);
+      return;
+    }
 
-    if (error) {
-      setMessage(`❌ ${error.message}`);
+    if (isLogin) {
+      const { error } = await supabase.auth.signInWithPassword({ email, password });
+      if (error) setMessage('❌ Credenciales incorrectas');
+      else {
+        setMessage('✅ Iniciando sesión...');
+        router.push('/');
+      }
     } else {
-      setMessage('✅ Cuenta creada. Revisa tu correo para confirmar el registro.');
+      const { error } = await supabase.auth.signUp({ email, password });
+      setMessage(
+        error
+          ? `❌ ${error.message}`
+          : '✅ Registro exitoso. Revisa tu correo para confirmar tu cuenta.'
+      );
     }
 
     setLoading(false);
@@ -42,10 +57,12 @@ export default function RegistroPage() {
         <div className="text-center mb-3">
           <div style={{ fontSize: '2.5rem' }}>⚽</div>
           <h2 className="auth-title">FutbolPage</h2>
-          <p className="auth-subtitle">Crea tu cuenta para comenzar</p>
+          <p className="auth-subtitle">
+            {isLogin ? 'Inicia sesión para continuar' : 'Crea tu cuenta para comenzar'}
+          </p>
         </div>
 
-        <form onSubmit={handleRegister}>
+        <form onSubmit={handleSubmit}>
           <input
             type="email"
             placeholder="Correo electrónico"
@@ -62,27 +79,36 @@ export default function RegistroPage() {
             onChange={(e) => setPassword(e.target.value)}
             required
           />
-          <input
-            type="password"
-            placeholder="Confirmar contraseña"
-            className="form-control mb-3"
-            value={confirm}
-            onChange={(e) => setConfirm(e.target.value)}
-            required
-          />
 
-          <button type="submit" className="btn auth-btn w-100" disabled={loading}>
-            {loading ? 'Registrando...' : 'Registrarse'}
+          {!isLogin && (
+            <input
+              type="password"
+              placeholder="Confirmar contraseña"
+              className="form-control mb-3"
+              value={confirm}
+              onChange={(e) => setConfirm(e.target.value)}
+              required
+            />
+          )}
+
+          <button type="submit" className="btn auth-btn w-100 mb-2" disabled={loading}>
+            {loading
+              ? isLogin
+                ? 'Iniciando...'
+                : 'Registrando...'
+              : isLogin
+              ? 'Iniciar sesión'
+              : 'Registrarse'}
           </button>
         </form>
 
-        {message && <p className="text-center mt-3">{message}</p>}
+        {message && <p className="text-center mt-2">{message}</p>}
 
         <p className="text-center mt-3">
-          ¿Ya tienes cuenta?{' '}
-          <Link href="/login" className="auth-link">
-            Iniciar sesión
-          </Link>
+          {isLogin ? '¿No tienes cuenta?' : '¿Ya tienes cuenta?'}{' '}
+          <button onClick={toggleMode} className="btn btn-link p-0 auth-link">
+            {isLogin ? 'Registrarse' : 'Iniciar sesión'}
+          </button>
         </p>
       </div>
     </div>
