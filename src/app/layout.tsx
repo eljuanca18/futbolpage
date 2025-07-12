@@ -3,6 +3,8 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import Navbar from "../components/Navbar";
 import { Inter } from "next/font/google";
 import type { ReactNode } from "react";
+import { AuthProvider } from "@/components/AuthProvider";
+
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -15,15 +17,15 @@ interface RootLayoutProps {
   children: ReactNode;
 }
 
-export default function RootLayout({ children }: RootLayoutProps) {
+export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="es">
-      <body className={inter.className}>
-        <Navbar />
-        <div className="container mt-4">{children}</div>
-        <footer className="bg-dark text-white text-center py-3 mt-4">
-          © 2025 FutbolPage. Todos los derechos reservados.
-        </footer>
+      <body className="...">
+        <AuthProvider>
+          <Navbar />
+          <div className="container mt-4">{children}</div>
+          <footer>...</footer>
+        </AuthProvider>
       </body>
     </html>
   );
