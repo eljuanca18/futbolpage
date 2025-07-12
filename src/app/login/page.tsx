@@ -34,7 +34,7 @@ export default function AuthPage() {
 
     if (isLogin) {
       const { error } = await supabase.auth.signInWithPassword({ email, password });
-      if (error) setMessage('❌ Credenciales incorrectas');
+      if (error) setMessage('❌ Contraseña incorrecta');
       else {
         setMessage('✅ Iniciando sesión...');
         router.push('/');

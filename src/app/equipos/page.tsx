@@ -1,4 +1,4 @@
-"use client";
+'use client';
 
 import data from "../../data/datosFutbol.json";
 import Link from "next/link";
@@ -16,15 +16,18 @@ export default function EquiposPage() {
     }
   }, [loading, session]);
 
-  if (loading || !session) return <p>Cargando...</p>;
+  if (loading || !session) return <p className="text-white text-center mt-5">Cargando...</p>;
 
   return (
-    <div>
-      <h2>Equipos</h2>
+    <div className="container">
+      <h2 className="mb-4">🏟️ Equipos</h2>
       <ul className="list-group">
         {data.map(equipo => (
-          <li key={equipo.id} className="list-group-item">
-            <Link href={`/equipo/${equipo.id}`}>{equipo.nombre}</Link>
+          <li key={equipo.id} className="list-group-item d-flex justify-content-between align-items-center">
+            <Link href={`/equipo/${equipo.id}`} className="text-success fw-bold">
+              {equipo.nombre}
+            </Link>
+            <span className="badge bg-success">{equipo.liga}</span>
           </li>
         ))}
       </ul>
