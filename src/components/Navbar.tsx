@@ -10,6 +10,7 @@ export default function Navbar() {
         <Nav className="me-auto">
           <Link href="/equipos" className="nav-link">Equipos</Link>
           <Link href="/jugadores" className="nav-link">Jugadores</Link>
+          <Link href="/buscar" className="nav-link">Buscar</Link>
         </Nav>
       </Container>
     </BsNavbar>
