@@ -11,6 +11,9 @@ const inter = Inter({ subsets: ["latin"] });
 export const metadata = {
   title: "FutbolPage",
   description: "Página de fútbol",
+  icons: {
+    icon: '/favicon.ico',
+  },
 };
 
 interface RootLayoutProps {
