@@ -6,7 +6,7 @@ import { useRouter } from 'next/navigation';
 import { useEffect } from 'react';
 import Link from 'next/link';
 import datos from '@/data/datosFutbol.json';
-
+import equipos from '@/data/datosFutbol.json';
 
 export default function Dashboard() {
   const { user, loading } = useUser();
@@ -77,6 +77,30 @@ export default function Dashboard() {
           ))}
         </ul>
       </div>
+
+      <div className="mt-5">
+        <h3 className="text-white mb-3">🏆 Equipos destacados</h3>
+        <div className="row g-3">
+          {equipos.slice(0, 4).map(eq => (
+            <div key={eq.id} className="col-md-3 col-sm-6">
+              <div className="card bg-dark text-white text-center p-2 h-100">
+                {eq.escudo && (
+                  <img
+                    src={eq.escudo}
+                    alt={`Escudo de ${eq.nombre}`}
+                    width={60}
+                    height={60}
+                    className="mx-auto mb-2"
+                  />
+                )}
+                <h5>{eq.nombre}</h5>
+                <span className="badge bg-success">{eq.liga}</span>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+
 
 
       <div className="text-center mt-5">

@@ -8,21 +8,33 @@ interface Params {
   };
 }
 
-export default function EquipoPage({ params }: Params) {
+export default function EquipoPage({ params }: { params: { id: string } }) {
   const equipo = data.find(e => e.id === parseInt(params.id));
 
   if (!equipo) return notFound();
 
   return (
-    <div>
-      <h2>{equipo.nombre}</h2>
-      <p>Liga: {equipo.liga}</p>
-      <p>Goles: {equipo.goles}</p>
-      <h4>Jugadores</h4>
-      <ul>
+    <div className="container">
+      <div className="text-center mb-4">
+        {equipo.escudo && (
+          <img
+            src={equipo.escudo}
+            alt={`Escudo de ${equipo.nombre}`}
+            width={100}
+            height={100}
+            className="mb-3"
+          />
+        )}
+        <h2 className="text-white">{equipo.nombre}</h2>
+        <p className="badge bg-success fs-6">{equipo.liga}</p>
+      </div>
+
+      <h4 className="text-white">👟 Jugadores</h4>
+      <ul className="list-group">
         {equipo.jugadores.map(j => (
-          <li key={j.id}>
-            <Link href={`/jugador/${j.id}`}>{j.nombre}</Link> - {j.goles} goles
+          <li key={j.id} className="list-group-item d-flex justify-content-between">
+            {j.nombre}
+            <span className="text-muted">{j.posicion}</span>
           </li>
         ))}
       </ul>
