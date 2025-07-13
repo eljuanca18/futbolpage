@@ -33,11 +33,14 @@ export default function EquipoPage({ params }: { params: { id: string } }) {
       <ul className="list-group">
         {equipo.jugadores.map(j => (
           <li key={j.id} className="list-group-item d-flex justify-content-between">
-            {j.nombre}
+            <Link href={`/jugador/${j.id}`} className="text-success fw-bold text-decoration-none">
+              {j.nombre}
+            </Link>
             <span className="text-muted">{j.posicion}</span>
           </li>
         ))}
       </ul>
+
     </div>
   );
 }
