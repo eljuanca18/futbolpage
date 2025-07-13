@@ -2,6 +2,7 @@
   {
     "id": 1,
     "nombre": "FC Barcelona",
+    "escudo": "/escudos/barcelona.png",
     "liga": "LaLiga",
     "goles": 85,
     "jugadores": [
@@ -12,6 +13,7 @@
   {
     "id": 2,
     "nombre": "Manchester City",
+    "escudo": "/escudos/mancity.png",
     "liga": "Premier League",
     "goles": 90,
     "jugadores": [
@@ -22,6 +24,7 @@
   {
     "id": 3,
     "nombre": "Bayer Munich",
+    "escudo": "/escudos/bayern.png",
     "liga": "Bundesliga",
     "goles": 96,
     "jugadores": [
@@ -32,6 +35,7 @@
   {
     "id": 4,
     "nombre": "River Plate",
+    "escudo": "/escudos/riverplate.png",
     "liga": "Liga Profesional AFA",
     "goles": 58,
     "jugadores": [
