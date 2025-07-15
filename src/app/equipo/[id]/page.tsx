@@ -2,12 +2,6 @@ import data from "../../../data/datosFutbol.json";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 
-interface Params {
-  params: {
-    id: string;
-  };
-}
-
 export default function EquipoPage({ params }: { params: { id: string } }) {
   const equipo = data.find(e => e.id === parseInt(params.id));
 
@@ -40,7 +34,6 @@ export default function EquipoPage({ params }: { params: { id: string } }) {
           </li>
         ))}
       </ul>
-
     </div>
   );
 }
