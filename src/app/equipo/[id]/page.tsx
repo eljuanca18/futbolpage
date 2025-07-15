@@ -1,8 +1,9 @@
 import data from "../../../data/datosFutbol.json";
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import Image from 'next/image';
 
-export default function EquipoPage({ params }: { params: { id: string } }) {
+export default async function EquipoPage({ params }: { params: { id: string } }) {
   const equipo = data.find(e => e.id === parseInt(params.id));
 
   if (!equipo) return notFound();
@@ -11,12 +12,13 @@ export default function EquipoPage({ params }: { params: { id: string } }) {
     <div className="container">
       <div className="text-center mb-4">
         {equipo.escudo && (
-          <img
+          <Image
             src={equipo.escudo}
             alt={`Escudo de ${equipo.nombre}`}
             width={100}
             height={100}
             className="mb-3"
+            unoptimized
           />
         )}
         <h2 className="text-white">{equipo.nombre}</h2>
