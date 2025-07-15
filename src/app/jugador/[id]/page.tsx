@@ -1,3 +1,4 @@
+"use client"
 import data from '@/data/datosFutbol.json';
 import { notFound } from 'next/navigation';
 import { use } from 'react';

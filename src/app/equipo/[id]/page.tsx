@@ -1,3 +1,4 @@
+"use client"
 import data from "@/data/datosFutbol.json";
 import Link from "next/link";
 import { notFound } from "next/navigation";
