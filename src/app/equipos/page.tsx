@@ -5,6 +5,8 @@ import Link from "next/link";
 import { useAuth } from '@/components/AuthProvider';
 import { useEffect } from 'react';
 import { useRouter } from 'next/navigation';
+import Image from 'next/image';
+
 
 export default function EquiposPage() {
   const { session, loading } = useAuth();
@@ -14,7 +16,7 @@ export default function EquiposPage() {
     if (!loading && !session) {
       router.push('/login');
     }
-  }, [loading, session]);
+  }, [loading, session, router]);
 
   if (loading || !session) return <p className="text-white text-center mt-5">Cargando...</p>;
 
@@ -26,12 +28,13 @@ export default function EquiposPage() {
           <li key={equipo.id} className="list-group-item d-flex justify-content-between align-items-center">
             <div className="d-flex align-items-center">
               {equipo.escudo && (
-                <img
+                <Image
                   src={equipo.escudo}
                   alt={`Escudo de ${equipo.nombre}`}
                   width={40}
                   height={40}
                   className="me-3"
+                  unoptimized
                 />
               )}
               <Link href={`/equipo/${equipo.id}`} className="text-success fw-bold">

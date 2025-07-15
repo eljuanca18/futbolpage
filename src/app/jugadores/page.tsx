@@ -14,7 +14,7 @@ export default function JugadoresPage() {
     if (!loading && !session) {
       router.push('/login');
     }
-  }, [loading, session]);
+  }, [loading, session, router]);
 
   if (loading || !session) return <p className="text-white text-center mt-5">Cargando...</p>;
 

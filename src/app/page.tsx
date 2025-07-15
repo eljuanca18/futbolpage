@@ -7,6 +7,8 @@ import { useEffect } from 'react';
 import Link from 'next/link';
 import datos from '@/data/datosFutbol.json';
 import equipos from '@/data/datosFutbol.json';
+import Image from 'next/image';
+
 
 export default function Dashboard() {
   const { user, loading } = useUser();
@@ -26,7 +28,7 @@ export default function Dashboard() {
     if (!loading && !user) {
       router.push('/login');
     }
-  }, [loading, user]);
+  }, [loading, user, router]);
 
   if (loading || !user) return <p className="text-white text-center mt-5">Cargando...</p>;
 
@@ -85,12 +87,13 @@ export default function Dashboard() {
             <div key={eq.id} className="col-md-3 col-sm-6">
               <div className="card bg-dark text-white text-center p-2 h-100">
                 {eq.escudo && (
-                  <img
+                  <Image
                     src={eq.escudo}
                     alt={`Escudo de ${eq.nombre}`}
                     width={60}
                     height={60}
                     className="mx-auto mb-2"
+                    unoptimized
                   />
                 )}
                 <h5>{eq.nombre}</h5>
