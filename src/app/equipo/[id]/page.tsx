@@ -1,13 +1,11 @@
-"use client"
+'use client';
+
 import data from "@/data/datosFutbol.json";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { use } from "react";
 import Image from 'next/image';
 
-
-export default function EquipoPage(p: Promise<{ params: { id: string } }>) {
-  const { params } = use(p);
+export default function EquipoPage({ params }: { params: { id: string } }) {
   const equipo = data.find(e => e.id === parseInt(params.id));
 
   if (!equipo) return notFound();
