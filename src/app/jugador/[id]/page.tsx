@@ -1,10 +1,13 @@
-'use client';
-
 import data from '@/data/datosFutbol.json';
 import { notFound } from 'next/navigation';
+import { use } from 'react';
 
-export default function JugadorPage({ params }: { params: { id: string } }) {
-  const jugador = data.flatMap(e => e.jugadores).find(j => j.id === parseInt(params.id));
+export default function JugadorPage(p: Promise<{ params: { id: string } }>) {
+  const { params } = use(p);
+
+  const jugador = data
+    .flatMap(e => e.jugadores)
+    .find(j => j.id === parseInt(params.id));
 
   if (!jugador) return notFound();
 

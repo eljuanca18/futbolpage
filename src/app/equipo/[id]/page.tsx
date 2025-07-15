@@ -1,9 +1,12 @@
-import data from "../../../data/datosFutbol.json";
+import data from "@/data/datosFutbol.json";
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import { use } from "react";
 import Image from 'next/image';
 
-export default async function EquipoPage({ params }: { params: { id: string } }) {
+
+export default function EquipoPage(p: Promise<{ params: { id: string } }>) {
+  const { params } = use(p);
   const equipo = data.find(e => e.id === parseInt(params.id));
 
   if (!equipo) return notFound();
@@ -39,3 +42,4 @@ export default async function EquipoPage({ params }: { params: { id: string } })
     </div>
   );
 }
+
